@@ -5,17 +5,17 @@ read fname
 echo "last name"
 read lname
 
-nohup firefox http://www.411.com/$fname-$lname 			1>| /tmp/files/nohup.out 2>&1 &
+nohup firefox http://www.411.com/name/$fname-$lname 			1>| /tmp/files/nohup.out 2>&1 &
 sleep 4
-firefox -new-tab http://www.cvgadget.com/person/$fname/$lname 	1>| /tmp/files/nohup.out 2>&1 &
+nohup firefox -new-tab http://www.cvgadget.com/person/$fname/$lname 	1>| /tmp/files/nohup.out 2>&1 &
 sleep 1
-firefox -new-tab http://www.peekyou.com/$fname'_'$lname 	1>| /tmp/files/nohup.out 2>&1 &
+nohup firefox -new-tab http://www.peekyou.com/$fname'_'$lname 	1>| /tmp/files/nohup.out 2>&1 &
 sleep 1
-firefox -new-tab https://pipl.com/search/?q=$fname+$lname 	1>| /tmp/files/nohup.out 2>&1 &
+nohup firefox -new-tab https://pipl.com/search/?q=$fname+$lname 	1>| /tmp/files/nohup.out 2>&1 &
 sleep 1
-firefox -new-tab http://www.spokeo.com/seach/?=$fname+$lname 	1>| /tmp/files/nohup.out 2>&1 &
+nohup firefox -new-tab http://www.spokeo.com/$fname-$lname 	1>| /tmp/files/nohup.out 2>&1 &
 sleep 1
-firefox -new-tab http://www.zabasearch.com/people/$fname+$lname 1>| /tmp/files/nohup.out 2>&1 &
+nohup -new-tab http://www.zabasearch.com/people/$fname+$lname 1>| /tmp/files/nohup.out 2>&1 &
 #while [ -n "${@}" ] ;
 #do
 #	curl "${1}"/robots.txt 2> /dev/null | grep -i disallow | cut -d ' ' -f 2; printf %$COLUMNS"s" | tr " " "-"
