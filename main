@@ -26,9 +26,9 @@ firefox $(cat <(dirb "${uri_}" -w -f | cat -A | sed -n 's/.*+ \(.*\) .*/\1/p') |
 
 gnome-terminal -x bash -c "wget ""${uri_}""/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/\1/p') | grep -v ""^/$"" | sort | uniq ; bash"
 
-firefox view-source:"${uri_}" $(cat <(wget "${uri_}"/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/'"${uri_//\//\\/}"'\1/p') | grep -v "^${location_}/$" | sort | uniq) | tr '\n' ' ') & #robots.txt
+firefox view-source:"${uri_}" $(cat <(wget "${uri_}"/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/'"${uri_//\//\\/}"'\1/p') | grep -v "^${uri_}/$" | sort | uniq) | tr '\n' ' ') & #robots.txt
 
-gnome-terminal -x bash -c "curl -i ""${location_}""; bash"
+gnome-terminal -x bash -c "curl -i ""${uri_}""; bash"
 
 whois $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
 
