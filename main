@@ -16,6 +16,28 @@ sleep 1
 nohup firefox -new-tab http://www.spokeo.com/$fname-$lname 	1>| /tmp/files/nohup.out 2>&1 &
 sleep 1
 nohup -new-tab http://www.zabasearch.com/people/$fname+$lname 1>| /tmp/files/nohup.out 2>&1 &
+
+
+
+
+gnome-terminal -x bash -c "dirb ""${location_}"" -w -f | cat -A | sed -n 's/.*+ \(.*\) .*/\1/p'; bash"
+ 
+firefox $(cat <(dirb "${location_}" -w -f | cat -A | sed -n 's/.*+ \(.*\) .*/\1/p') | tr '\n' ' ') & #directories
+
+gnome-terminal -x bash -c "wget ""${location_}""/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/\1/p') | grep -v ""^/$"" | sort | uniq ; bash"
+
+firefox $(cat <(wget "${location_}"/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/'"${location_//\//\\/}"'\1/p') | grep -v "^${location_}/$" | sort | uniq) | tr '\n' ' ') & #robots.txt
+
+gnome-terminal -x bash -c "curl -i ""${location_}""; bash"
+
+whois $(echo "${location_}" | sed 's/.*\.\(.*\..*\)/\1/')
+
+dnsenum $(echo "${location_}" | sed 's/.*\.\(.*\..*\)/\1/')
+
+
+
+
+
 #while [ -n "${@}" ] ;
 #do
 #	curl "${1}"/robots.txt 2> /dev/null | grep -i disallow | cut -d ' ' -f 2; printf %$COLUMNS"s" | tr " " "-"
