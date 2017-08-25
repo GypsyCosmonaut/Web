@@ -34,8 +34,10 @@ whois $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
 
 dnsenum $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
 
-
-
+#dig
+#ping
+#other
+#traceroute
 
 
 #while [ -n "${@}" ] ;
