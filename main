@@ -26,7 +26,7 @@ firefox $(cat <(dirb "${location_}" -w -f | cat -A | sed -n 's/.*+ \(.*\) .*/\1/
 
 gnome-terminal -x bash -c "wget ""${location_}""/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/\1/p') | grep -v ""^/$"" | sort | uniq ; bash"
 
-firefox $(cat <(wget "${location_}"/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/'"${location_//\//\\/}"'\1/p') | grep -v "^${location_}/$" | sort | uniq) | tr '\n' ' ') & #robots.txt
+firefox view-source:"${location_}" $(cat <(wget "${location_}"/robots.txt 2> /dev/null -O >(sed -n 's/^Disallow[^:]*: \(.*\)/'"${location_//\//\\/}"'\1/p') | grep -v "^${location_}/$" | sort | uniq) | tr '\n' ' ') & #robots.txt
 
 gnome-terminal -x bash -c "curl -i ""${location_}""; bash"
 
