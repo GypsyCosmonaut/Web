@@ -30,15 +30,20 @@ firefox view-source:"${uri_}" $(cat <(wget "${uri_}"/robots.txt 2> /dev/null -O 
 
 gnome-terminal -x bash -c "curl -i ""${uri_}""; bash"
 
+gnome-terminal -x bash -c "wget ""${uri_}"" -O /dev/tty 2>| /dev/null; bash"
+
 whois $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
 
 dnsenum $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
+
+sslscan "${uri_}"
+
+sslyze $(sed 's/^http[s]*:\/\///' <<<"${uri_}")
 
 #dig
 #ping
 #other
 #traceroute
-
 
 #while [ -n "${@}" ] ;
 #do
