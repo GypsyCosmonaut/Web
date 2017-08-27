@@ -32,6 +32,14 @@ gnome-terminal -x bash -c "curl -i ""${uri_}""; bash"
 
 gnome-terminal -x bash -c "wget ""${uri_}"" -O /dev/tty 2>| /dev/null; bash"
 
+host -a "${uri_/https:\/\//}"
+
+dig -a "${uri_/https:\/\//}"
+
+nslookup -a "${uri_/https:\/\//}"
+
+gnome-terminal -x bash -c "traceroute ""${uri_/https:\/\//}""; bash"
+
 whois $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
 
 dnsenum $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
