@@ -44,7 +44,7 @@ whois $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
 
 dnsenum $(echo "${uri_}" | sed 's/.*\.\(.*\..*\)/\1/')
 
-sslscan "${uri_}"
+sslscan "${uri_/https:\/\//}"
 
 sslyze $(sed 's/^http[s]*:\/\///' <<<"${uri_}")
 
